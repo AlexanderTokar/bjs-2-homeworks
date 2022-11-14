@@ -99,3 +99,40 @@ class Library {
         return deleteBook;
     }
 }
+
+ //Задание 3 (в процессе)
+
+class Student {
+    constructor(name, gender, age) {
+        this.name = name;
+        this.gender = gender;
+        this.age = age;
+        this.status = 'valid';
+        this.marks = [];
+    }
+
+    exclude(reason) {
+        delete this.marks;
+        this.status = 'Исключен(а) за' + reason;
+    }
+
+    addMark(mark, subjectName) {
+        if (mark <= 5) {
+            let grade = new Grade(mark, subjectName);
+            if (this.marks === undefined) {
+                this.marks = [grade];
+            } else {
+                this.marks.push(grade);
+            }
+        }
+        console.log("Ошибка, оценка должна быть числом от 1 до 5");
+    }
+
+    getAverage() {
+        let result = 0;
+        for (let i = 0; i < this.marks.length; i++) {
+            result += this.marks[i].mark;
+        }
+        return result / this.marks.length;
+    }
+}
